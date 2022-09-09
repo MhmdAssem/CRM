@@ -42,12 +42,13 @@ namespace CRM
             #endregion
 
 
-            #region Question 1 can be improved by using dictionaries of all events and when sending a mail to a customer it will be cheaper to get the list of events from the dictionary 
+            #region Question 1 can be improved by using dictionaries of all events and when sending a mail to a customer it will be faster O(1) to get the list of events from the dictionary 
+            AddEventToDictionary(events);
             SendEmailsToCustomerByLoopWithDictionary(customer);
             #endregion
 
             #region Question 2, to get the distances i will then have to loop on all events to get the distances between Customer and put them into sorted dictionary then get first 5 events in the dictionary
-                Send5ClosestEvents(customer, events);
+            Send5ClosestEvents(customer, events);
             #endregion
 
             #region Question 2 enhancement would be first to cache the result using Dictionary so if we encounter the same city then we have our answer , second enhancement would be before getting distances would be checking the events of my current city first
@@ -55,7 +56,7 @@ namespace CRM
             #endregion
 
 
-            #region Question 3 if it's too exensive we would solve that by caching the result like done in question 2 
+            #region Question 3 if it's too exensive we would solve that by caching the result like done in question 2 using dictionaries
 
             #endregion
 
@@ -63,8 +64,8 @@ namespace CRM
 
             #endregion
 
-            #region Question 5 we will implement a function that will sort events based on prices and then take first n events
-
+            #region Question 5 we will implement a function that will sort events based on prices and then take first n events assuming that the price is not related with the distance at all 
+            get5LowestPriceEvents(events);
             #endregion
 
         }
@@ -150,19 +151,23 @@ namespace CRM
             }
         }
 
-        public static void AddEventToDictionary(Event _event)
+        public static void AddEventToDictionary(List<Event> events)
         {
-            if (!EventsDictionary.ContainsKey(_event.City))
-                EventsDictionary[_event.City] = new List<Event>();
+            foreach (var _event in events)
+            {
+                if (!EventsDictionary.ContainsKey(_event.City))
+                    EventsDictionary[_event.City] = new List<Event>();
 
-            EventsDictionary[_event.City].Add(_event);
+                EventsDictionary[_event.City].Add(_event);
+            }
+
         }
 
         public static List<Event> Send5ClosestEvents(Customer _customer, List<Event> _events)
         {
             List<Event> ClostestEvents = new List<Event>();
             SortedDictionary<int, List<Event>> EventsDistances = new SortedDictionary<int, List<Event>>();
-            
+
             foreach (var _event in _events)
             {
                 int distance = -1;
@@ -175,7 +180,7 @@ namespace CRM
                     Console.WriteLine(e.Message);
                     continue;
                 }
-                
+
 
                 if (!EventsDistances.ContainsKey(distance))
                     EventsDistances[distance] = new List<Event>();
@@ -194,12 +199,17 @@ namespace CRM
         private static List<Event> Send5ClosestEventsBetter(Customer customer, List<Event> events)
         {
             if (NearestEventsForCity.ContainsKey(customer.City)) return NearestEventsForCity[customer.City];
+
             List<Event> ClosestEvents = new List<Event>();
-            ClosestEvents.AddRange(EventsDictionary.ContainsKey(customer.City) ? EventsDictionary[customer.City] : new List<Event>()) ;
+
+            ClosestEvents.AddRange(EventsDictionary.ContainsKey(customer.City) ? EventsDictionary[customer.City] : new List<Event>());
+            if (ClosestEvents.Count >= 5) return ClosestEvents;
+
             SortedDictionary<int, List<Event>> EventsDistances = new SortedDictionary<int, List<Event>>();
 
             foreach (var _event in events)
             {
+                if (_event.City == customer.City) continue;
                 int distance = -1;
                 try
                 {
@@ -225,8 +235,8 @@ namespace CRM
             NearestEventsForCity[customer.City] = ClosestEvents;
             return ClosestEvents;
         }
-        
-        private static List<Event> get5LowestPriceEvents(Customer customer, List<Event> events)
+
+        private static List<Event> get5LowestPriceEvents(List<Event> events)
         {
             return events.OrderBy(e => e.price).Take(5).ToList();
         }
