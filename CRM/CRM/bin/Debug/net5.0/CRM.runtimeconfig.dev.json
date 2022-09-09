@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Zoom-FC\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Zoom-FC\\.nuget\\packages"
+    ]
+  }
+}

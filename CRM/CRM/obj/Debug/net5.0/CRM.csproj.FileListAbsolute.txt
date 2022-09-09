@@ -1,0 +1,16 @@
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.exe
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.deps.json
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.runtimeconfig.json
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.runtimeconfig.dev.json
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.dll
+F:\Andela Test Project\CRM\CRM\bin\Debug\net5.0\CRM.pdb
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.csproj.AssemblyReference.cache
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.GeneratedMSBuildEditorConfig.editorconfig
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.AssemblyInfoInputs.cache
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.AssemblyInfo.cs
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.csproj.CoreCompileInputs.cache
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.dll
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\refint\CRM.dll
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.pdb
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\CRM.genruntimeconfig.cache
+F:\Andela Test Project\CRM\CRM\obj\Debug\net5.0\ref\CRM.dll
